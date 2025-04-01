@@ -1,0 +1,28 @@
+import { Checklist } from '../interfaces/checklist.interface';
+
+export const checklists: Checklist[] = [
+  {
+    id: 1,
+    building: 'Harmony Tower',
+    date: '2025-03-10',
+    status: 'Pass',
+    inspector: 'John Doe',
+    notes: 'All fire alarms working properly',
+  },
+  {
+    id: 2,
+    building: 'Maple Apartments',
+    date: '2025-03-08',
+    status: 'Fail',
+    inspector: 'Jane Smith',
+    notes: 'Fire extinguishers need replacement',
+  },
+  {
+    id: 3,
+    building: 'Sunset Complex',
+    date: '2025-03-05',
+    status: 'Pass',
+    inspector: 'Mike Johnson',
+    notes: 'All safety measures in place',
+  },
+];
