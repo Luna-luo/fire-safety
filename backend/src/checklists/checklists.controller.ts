@@ -1,30 +1,23 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
-import { Checklist } from '../interfaces/checklist.interface';
-import { checklists } from '../data/checklists';
+import { Checklist } from './checklist.interface';
+import { ChecklistsService } from './checklists.service';
+import { CreateChecklistDto } from './dto/create-checklist.dto';
 
 @Controller('checklists')
 export class ChecklistsController {
+  constructor(private readonly checklistsService: ChecklistsService) {}
   @Get()
   findAll(): Checklist[] {
-    return checklists;
+    return this.checklistsService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string): Checklist {
-    const checklist = checklists.find((c) => c.id === parseInt(id));
-    if (!checklist) {
-      throw new Error('Checklist not found');
-    }
-    return checklist;
+    return this.checklistsService.findOne(id);
   }
 
   @Post()
-  create(@Body() checklist: Omit<Checklist, 'id'>): Checklist {
-    const newChecklist = {
-      ...checklist,
-      id: Math.max(...checklists.map((c) => c.id)) + 1,
-    };
-    checklists.push(newChecklist);
-    return newChecklist;
+  create(@Body() createChecklistDto: CreateChecklistDto): Checklist {
+    return this.checklistsService.create(createChecklistDto);
   }
 }

@@ -6,6 +6,7 @@ async function bootstrap() {
   app.enableCors({
     origin: 'http://localhost:5173', // Vue dev server default port
     methods: ['GET', 'POST'],
+    credentials: true,
   });
   await app.listen(process.env.PORT ?? 3000);
 }

@@ -52,3 +52,28 @@ npm run dev
 - GET `/checklists` - Get all checklists
 - GET `/checklists/:id` - Get specific checklist details
 - POST `/checklists` - Add new checklist (frontend state only)
+
+## Example API Responses
+
+- GET `/checklists` - All Checklists 
+
+```json
+[ 
+  { "id": 1, "building": "Harmony Tower", "date": "2025-03-10", "status": "Pass" }, 
+  { "id": 2, "building": "Maple Apartments", "date": "2025-03-08", "status": "Fail" } 
+]
+```
+
+- GET `/checklists/:id` - Get specific checklist details
+
+```javascript
+{ 
+  "id": 1, 
+  "building": "Harmony Tower", 
+  "date": "2025-03-10", 
+  "status":"Pass", 
+  "inspector": "John Doe", 
+  "notes": "All fire alarms working properly."
+}
+```
+
