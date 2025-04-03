@@ -2,7 +2,8 @@ import axios, { type AxiosInstance, type AxiosResponse, type InternalAxiosReques
 
 // create axios instance
 const http: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
+  // read from env
+  baseURL: import.meta.env.VITE_API_URL,
   timeout: 60000,
   withCredentials: true, // allow cross-domain requests to carry cookies
   headers: {

@@ -16,7 +16,7 @@ const readData = (filePath: string): Checklist[] => {
 };
 
 // read the mock data from the file
-const checklistsMockPath = path.join(process.cwd(), './src/mock-data/', 'mock-checklists.json');
+const checklistsMockPath = path.join(__dirname, '../mock-checklists.json');
 const checklists = readData(checklistsMockPath);
 
 @Injectable()

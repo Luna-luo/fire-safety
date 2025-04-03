@@ -28,7 +28,7 @@ async function bootstrap() {
   app.useGlobalFilters(new BusinessExceptionFilter(logger), new AllExceptionsFilter(logger));
 
   app.enableCors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://fire-safety.mytool.life'],
     methods: ['GET', 'POST'],
     credentials: true,
   });
