@@ -14,7 +14,36 @@ const form = ref({
   notes: '',
 })
 
+const errors = ref({
+  building: '',
+  inspector: '',
+})
+
+const validateForm = () => {
+  let isValid = true
+  errors.value = {
+    building: '',
+    inspector: '',
+  }
+
+  if (!form.value.building.trim()) {
+    errors.value.building = 'Building name is required'
+    isValid = false
+  }
+
+  if (!form.value.inspector.trim()) {
+    errors.value.inspector = 'Inspector name is required'
+    isValid = false
+  }
+
+  return isValid
+}
+
 const submitForm = async () => {
+  if (!validateForm()) {
+    return
+  }
+
   try {
     const checklist: Checklist = {
       ...form.value,
@@ -66,8 +95,10 @@ const submitForm = async () => {
               type="text"
               required
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+              :class="{ 'border-red-500': errors.building }"
               placeholder="Enter building name"
             />
+            <p v-if="errors.building" class="mt-1 text-sm text-red-500">{{ errors.building }}</p>
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Inspector</label>
@@ -76,8 +107,10 @@ const submitForm = async () => {
               type="text"
               required
               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+              :class="{ 'border-red-500': errors.inspector }"
               placeholder="Enter inspector name"
             />
+            <p v-if="errors.inspector" class="mt-1 text-sm text-red-500">{{ errors.inspector }}</p>
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>

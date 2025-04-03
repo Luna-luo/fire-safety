@@ -3,6 +3,6 @@ export interface Checklist {
   building: string
   date: string
   status: 'Pass' | 'Fail'
-  inspector: string
-  notes: string
+  inspector?: string
+  notes?: string
 } 
