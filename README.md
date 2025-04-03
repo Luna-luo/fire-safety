@@ -1,35 +1,72 @@
-# Fire Safety Checklist Application
+# Fire Safety Checklist System
 
-A full-stack web application for managing fire safety checklists for different buildings.
+A full-stack web application for managing fire safety inspections and checklists. This system helps building managers and safety inspectors track and manage fire safety compliance across multiple buildings.
 
-## Project Structure
+## Project Overview
 
-- `frontend/` - Vue 3 application using Composition API
-- `backend/` - NestJS application serving static JSON data
+This project consists of two main components:
+
+- **Backend**: A NestJS application providing RESTful APIs for checklist management
+- **Frontend**: A Vue.js application offering an intuitive interface for users
 
 ## Features
 
-- View list of fire safety checklists
+### Core Features
+
+- Create and manage fire safety checklists
+- Track inspection status (Pass/Fail)
+- Detailed inspection notes and documentation
+- Building-specific safety records
+
+### Frontend Features
+
+- Modern, responsive user interface
 - Filter checklists by status (Pass/Fail)
-- View detailed information for each checklist
-- Add new checklists (frontend state only)
-- Responsive design with Tailwind CSS
+- Real-time form validation
+- Add new checklist (frontend state only as required)
+
+### Backend Features
+
+- RESTful API endpoints
+- Input validation
+- Comprehensive error handling
+- Structured logging
+- Unit and e2e testing
+- Docker support
+- Read from mock data
 
 ## Tech Stack
 
 ### Frontend
 
-- Vue 3 (Composition API)
-- Vue Router
-- Pinia (State Management)
-- Tailwind CSS
+- [Vue 3](https://vuejs.org/) - Progressive JavaScript framework
+- [Vue Router](https://router.vuejs.org/) - Official router for Vue.js
+- [Pinia](https://pinia.vuejs.org/) - State management
+- [Axios](https://axios-http.com/) - HTTP client
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
 
 ### Backend
 
-- NestJS
-- Static JSON API
+- [NestJS](https://nestjs.com/) - A progressive Node.js framework
+- [TypeScript](https://www.typescriptlang.org/) - TypeScript support
+- [Winston](https://github.com/winstonjs/winston) - Logging
+- [Jest](https://jestjs.io/) - Testing framework
+- [Class Validator](https://github.com/typestack/class-validator) - Input validation
 
-## Setup Instructions
+## Prerequisites
+
+- Node.js (v18 or higher)
+- npm (v8 or higher)
+- Docker (optional, for containerized deployment)
+
+## Quick Start
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/your-username/fire-safety.git
+cd fire-safety
+```
 
 ### Backend Setup
 
@@ -47,33 +84,90 @@ npm install
 npm run dev
 ```
 
-## API Endpoints
+## Project Structure
 
-- GET `/checklists` - Get all checklists
-- GET `/checklists/:id` - Get specific checklist details
-- POST `/checklists` - Add new checklist (frontend state only)
+```
+fire-safety/
+├── backend/              # NestJS backend application
+│   ├── src/             # Source code
+│   ├── test/            # Test files
+│   └── package.json     # Backend dependencies
+├── frontend/            # Vue.js frontend application
+│   ├── src/             # Source code
+│   ├── public/          # Static assets
+│   └── package.json     # Frontend dependencies
+└── README.md            # Project documentation
+```
 
-## Example API Responses
+## API Documentation
 
-- GET `/checklists` - All Checklists 
+### Checklists Endpoints
 
+- `GET /checklists` - Get all checklists
+- `GET /checklists/:id` - Get a specific checklist
+- `POST /checklists` - Create a new checklist (does not persist as required)
+
+### Example API Responses
+
+#### Get All Checklists (format as required)
 ```json
-[ 
-  { "id": 1, "building": "Harmony Tower", "date": "2025-03-10", "status": "Pass" }, 
-  { "id": 2, "building": "Maple Apartments", "date": "2025-03-08", "status": "Fail" } 
+[
+  {
+    "id": 1,
+    "building": "Main Building",
+    "date": "2024-03-20",
+    "status": "Pass"
+  }
 ]
 ```
 
-- GET `/checklists/:id` - Get specific checklist details
+#### Get Single Checklist
 
-```javascript
-{ 
-  "id": 1, 
-  "building": "Harmony Tower", 
-  "date": "2025-03-10", 
-  "status":"Pass", 
-  "inspector": "John Doe", 
-  "notes": "All fire alarms working properly."
+```json
+{
+  "id": 1,
+  "building": "Main Building",
+  "inspector": "John Doe",
+  "date": "2024-03-20",
+  "status": "Pass",
+  "notes": "All safety measures in place"
 }
 ```
 
+## Docker Deployment
+
+### Backend
+
+```bash
+cd backend
+docker build -t fire-safety-backend .
+docker run -d -p 3000:3000 --name backend fire-safety-backend
+```
+
+### Frontend
+
+```bash
+cd frontend
+docker build -t fire-safety-frontend .
+docker run -d -p 80:80 --name frontend fire-safety-frontend
+```
+
+## Development Guidelines
+
+### Code Style
+
+- Follow Vue.js style guide for frontend
+- Follow NestJS best practices for backend
+- Use TypeScript for type safety
+- Write unit tests for services
+- Document complex logic
+
+## Testing
+
+### Backend Tests
+
+```bash
+cd backend
+npm run test        # Unit tests
+npm run test:e2e    # E2E tests
+```
