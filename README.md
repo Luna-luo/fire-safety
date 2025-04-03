@@ -2,6 +2,9 @@
 
 A full-stack web application for managing fire safety inspections and checklists. This system helps building managers and safety inspectors track and manage fire safety compliance across multiple buildings.
 
+## Production Demo URL
+https://fire-safety.mytool.life
+
 ## Project Overview
 
 This project consists of two main components:
